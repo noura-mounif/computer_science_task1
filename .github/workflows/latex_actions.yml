@@ -1,0 +1,17 @@
+name: Build LaTeX document
+on:
+  tags:
+    - '*'
+jobs:
+  build_latex:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Git repository
+        uses: actions/checkout@v2
+      - name: Compile LaTeX document
+        uses: xu-cheng/latex-action@v2
+        with:
+          root_file: card.tex
+          latexmk_use_xelatex: true
+      - name: Uploading
+        uses: softprops/action-gh-release@v1
